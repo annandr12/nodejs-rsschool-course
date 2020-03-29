@@ -1,0 +1,22 @@
+{
+  "name": "caesar-cipher-node",
+  "version": "1.0.0",
+  "description": "caesar-cipher task from the rs-school node.js course",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/annandr12/caesar-cipher-node.git"
+  },
+  "author": "Anna Andriushkina (annandr12@gmail.com)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/annandr12/caesar-cipher-node/issues"
+  },
+  "homepage": "https://github.com/annandr12/caesar-cipher-node#readme",
+  "dependencies": {
+    "commander": "^5.0.0"
+  }
+}
