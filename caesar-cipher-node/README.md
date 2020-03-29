@@ -18,6 +18,6 @@ node ./index.js -s 7 --action decode -i read.txt -o write.txt
 ```
 
 ```
-node ./index.js -s 7 --action decode -i
+node ./index.js -s 25 --action decode -i
 
 ```
