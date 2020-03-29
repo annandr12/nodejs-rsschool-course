@@ -1,10 +1,10 @@
 const fs = require('fs');
 const { pipeline } = require('stream');
 
-const createTransformStream = require('./create-transform-stream');
-const getOptions = require('./get-options');
-const getFilePath = require('./get-file-path');
-const { handleReqiredOptions, handleFiles} = require('./handle-options');
+const createTransformStream = require('./utils/create-transform-stream');
+const getOptions = require('./utils/get-options');
+const getFilePath = require('./utils/get-file-path');
+const { handleReqiredOptions, handleFiles} = require('./utils/handle-options');
 
 
 const programOptions = getOptions();
