@@ -1,8 +1,7 @@
 const { program } = require('commander');
 
 module.exports = () => {
-  program
-    .storeOptionsAsProperties(false);
+  program.storeOptionsAsProperties(false);
   program
     .option('-s, --shift <num>', 'a shift')
     .option('-i, --input <filename>', 'input file')
@@ -11,4 +10,4 @@ module.exports = () => {
 
   program.parse(process.argv);
   return program.opts();
-}
+};

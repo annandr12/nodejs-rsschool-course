@@ -1,6 +1,5 @@
 const displayErrorMessage = (message, code) => {
-  process.stderr.write(message);
-  process.exit(code);
-}
+  throw new Error(`${message}. Exited with code ${code}`);
+};
 
 module.exports = displayErrorMessage;
