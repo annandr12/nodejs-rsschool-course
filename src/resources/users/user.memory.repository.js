@@ -12,9 +12,7 @@ const getUserById = async id => {
 
 const updateUserById = async (id, data) => {
   let updatedUser = users.find(user => user.id === id);
-  console.log('users', users);
   updatedUser = Object.assign(updatedUser, data);
-  console.log('users after', users);
   return updatedUser;
 };
 
