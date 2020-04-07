@@ -21,7 +21,7 @@ router
 router.param('boardId', async (req, res, next, boardId) => {
   const board = await boardService.getBoard(boardId);
   if (!board) {
-    res.sendStatus(404);
+    res.status(404).send('Board not found');
   }
   next();
 });

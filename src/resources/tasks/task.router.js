@@ -1,21 +1,12 @@
 const router = require('express').Router();
 const taskService = require('./task.service');
-const boardService = require('../boards/board.service');
-
-router.param('boardId', async (req, res, next, boardId) => {
-  const board = await boardService.getBoard(boardId);
-  if (!board) {
-    res.sendStatus(404);
-  }
-  next();
-});
 
 router.param('taskId', async (req, res, next, taskId) => {
   const { boardId } = req.params;
 
   const task = await taskService.getTask(boardId, taskId);
   if (!task) {
-    res.sendStatus(404);
+    res.status(404).send('Task not found');
   }
   next();
 });
