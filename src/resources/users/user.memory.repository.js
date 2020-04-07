@@ -10,20 +10,25 @@ const getUserById = async id => {
   return users.find(user => user.id === id);
 };
 
-const updateUserById = async (id, data) => {
+const updateUserById = async (id, userData) => {
   let updatedUser = users.find(user => user.id === id);
-  updatedUser = Object.assign(updatedUser, data);
+
+  updatedUser = Object.assign(updatedUser, userData);
+
   return updatedUser;
 };
 
 const createNewUser = async ({ name, login, password }) => {
   const newUser = new User({ name, login, password });
+
   users.push(newUser);
+
   return newUser;
 };
 
 const deleteUserById = async id => {
   const userIndex = users.findIndex(user => user.id === id);
+
   users.splice(userIndex, 1);
 };
 

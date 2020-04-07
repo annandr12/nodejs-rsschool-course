@@ -1,6 +1,7 @@
 const router = require('express').Router();
 // const Board = require('./board.model');
 const boardService = require('./board.service');
+const tasksService = require('../tasks/task.service');
 
 router
   .route('/')
@@ -49,6 +50,7 @@ router
     const { boardId } = req.params;
 
     await boardService.deleteBoard(boardId);
+    await tasksService.deleteAllBoardTasks(boardId);
 
     res.sendStatus(204);
   });
