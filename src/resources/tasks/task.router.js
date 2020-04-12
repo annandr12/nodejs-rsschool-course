@@ -1,14 +1,21 @@
 const router = require('express').Router();
 const taskService = require('./task.service');
+const CustomError = require('../../common/error');
 
 router.param('taskId', async (req, res, next, taskId) => {
   const { boardId } = req.params;
 
-  const task = await taskService.getTask(boardId, taskId);
-  if (!task) {
-    res.status(404).send('Task not found');
+  try {
+    const task = await taskService.getTask(boardId, taskId);
+    if (!task) {
+      throw new CustomError(404, 'Task not found');
+    }
+    next();
+    return;
+  } catch (err) {
+    next(err);
+    return;
   }
-  next();
 });
 
 router

@@ -2,6 +2,7 @@ const router = require('express').Router();
 // const Board = require('./board.model');
 const boardService = require('./board.service');
 const tasksService = require('../tasks/task.service');
+const CustomError = require('../../common/error');
 
 router
   .route('/')
@@ -19,11 +20,17 @@ router
   });
 
 router.param('boardId', async (req, res, next, boardId) => {
-  const board = await boardService.getBoard(boardId);
-  if (!board) {
-    res.status(404).send('Board not found');
+  try {
+    const board = await boardService.getBoard(boardId);
+    if (!board) {
+      throw new CustomError(404, 'Board not found');
+    }
+    next();
+    return;
+  } catch (err) {
+    next(err);
+    return;
   }
-  next();
 });
 
 router
