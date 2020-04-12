@@ -18,7 +18,7 @@ const logger = winston.createLogger({
   ]
 });
 
-module.exports = (req, res, next) => {
+const requestsLogger = (req, res, next) => {
   logger.log({
     level: 'info',
     message: `originalUrl: ${req.originalUrl} query: ${JSON.stringify(
@@ -26,4 +26,15 @@ module.exports = (req, res, next) => {
     )} body: ${JSON.stringify(req.body)}`
   });
   next();
+};
+
+const errorsLogger = err => {
+  const message = err.message || 'Internal server error';
+  const statusCode = err.statusCode || 500;
+  logger.error(`${statusCode}, ${message}`);
+};
+
+module.exports = {
+  requestsLogger,
+  errorsLogger
 };

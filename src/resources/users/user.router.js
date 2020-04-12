@@ -2,6 +2,7 @@ const router = require('express').Router();
 const User = require('./user.model');
 const usersService = require('./user.service');
 const tasksService = require('../tasks/task.service');
+const CustomError = require('../../common/error');
 
 router
   .route('/')
@@ -19,11 +20,17 @@ router
   });
 
 router.param('userId', async (req, res, next, userId) => {
-  const user = await usersService.getUser(userId);
-  if (!user) {
-    res.sendStatus(404);
+  try {
+    const user = await usersService.getUser(userId);
+    if (!user) {
+      throw new CustomError(404, 'User not found');
+    }
+    next();
+    return;
+  } catch (err) {
+    next(err);
+    return;
   }
-  next();
 });
 
 router
