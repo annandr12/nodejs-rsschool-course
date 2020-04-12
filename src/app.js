@@ -38,7 +38,11 @@ app.use('/', (req, res, next) => {
 
 app.use(requestsLogger);
 
-app.use((err, res) => {
+app.use('/users', userRouter);
+app.use('/boards', boardRouter);
+app.use('/boards', taskRouter);
+
+app.use((err, req, res) => {
   err.message = err.message || 'Internal server error';
   err.statusCode = err.statusCode || 500;
   console.log('HEEERE');
@@ -49,9 +53,5 @@ app.use((err, res) => {
     message: err.message
   });
 });
-
-app.use('/users', userRouter);
-app.use('/boards', boardRouter);
-app.use('/boards', taskRouter);
 
 module.exports = app;
