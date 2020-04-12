@@ -38,13 +38,10 @@ app.use('/', (req, res, next) => {
 
 app.use(requestsLogger);
 
-app.use('/users', userRouter);
-app.use('/boards', boardRouter);
-app.use('/boards', taskRouter);
-
-app.use((err, req, res) => {
+app.use((err, res) => {
   err.message = err.message || 'Internal server error';
   err.statusCode = err.statusCode || 500;
+  console.log('HEEERE');
   errorsLogger(err);
   res.status(err.statusCode).json({
     status: 'error',
@@ -52,5 +49,9 @@ app.use((err, req, res) => {
     message: err.message
   });
 });
+
+app.use('/users', userRouter);
+app.use('/boards', boardRouter);
+app.use('/boards', taskRouter);
 
 module.exports = app;
